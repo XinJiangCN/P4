@@ -29,7 +29,7 @@ In this project, you will implement a basic version of Schedule Planner. In ever
 
 We will represent above schedules as intervals. Each interval is represented as  <label> [start  end] where label is the name of the project/schedule and [start  end] represents the span of the project/appointment in your calendar. There can be overlapping intervals: e.g., P1 [10 30], P2 [20 27], here P1 and P2 have overlapping time-windows. You will write a variation of Binary Search Tree called IntervalTree to store these intervals and support various queries (see below for what queries are supported). Each node will represent a project schedule/appointment. Each node will have [start, end] as its **data** values, and the **key** for comparison will be first the 'start' value and then if 'start' are same, you'll compare the 'end' values. Each node in the IntervalTree will also store a **maxEnd** variable which represents the maximum end present in the subtree rooted at node 'n'.  For example, a diagram of such a tree may look like this:
 
-![interval-tree.jpg](https://canvas.wisc.edu/courses/23073/files/1017786/preview) 
+![interval-tree.jpg](interval-tree.jpg) 
 
 As you can see in the above tree, each node represents the interval which denotes the appointment/schedule in your calendar. Notice that **maxEnd** is the maximum end in the *subtree* rooted at that node. So, if you delete/insert an interval, it's going to affect the **maxEnd** of possibly multiple nodes in the path from root to the node you deleted/inserted.
 
