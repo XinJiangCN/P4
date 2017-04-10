@@ -12,114 +12,125 @@
  */
 
 public class IntervalNode<T extends Comparable<T>> {
-	// Interval stored in the node.
-	private IntervalADT<T> interval;
+    // Interval stored in the node.
+    private IntervalADT<T> interval;
 
-	// Each node stores the maxEnd of the interval in its subtree.
-	private T maxEnd;
+    // Each node stores the maxEnd of the interval in its subtree.
+    private T maxEnd;
 
-	// LeftNode and RightNode.
-	private IntervalNode<T> leftNode, rightNode;
+    // LeftNode and RightNode.
+    private IntervalNode<T> leftNode, rightNode;
 
-	/**
-	 * Constructor to create a new IntervalNode. Set the interval data structure
-	 * present as member variable above and maxEnd associated with the interval.
-	 * Hint: Use interval.getEnd() to get the end of the interval. Note: In your
-	 * intervalTree, this will get updated subsequently.
-	 * 
-	 * @param interval
-	 *            the interval data member.
-	 */
-	public IntervalNode(IntervalADT<T> interval) {
-		// TODO
-	}
 
-	/**
-	 * Returns the next in-order successor of the BST. Hint: Return left-most
-	 * node in the right subtree. Return null if there is no rightNode.
-	 *
-	 * @return in-order successor node
-	 */
-	public IntervalNode<T> getSuccessor() {
-		// TODO
-	}
+    /**
+     * Constructor to create a new IntervalNode. Set the interval data structure
+     * present as member variable above and maxEnd associated with the interval.
+     * Hint: Use interval.getEnd() to get the end of the interval. Note: In your
+     * intervalTree, this will get updated subsequently.
+     * 
+     * @param interval
+     *            the interval data member.
+     */
+    public IntervalNode(IntervalADT<T> interval) {
+        this.interval = interval;
+        leftNode = null;
+        rightNode = null;
 
-	/**
-	 * Returns the interval associated with the node.
-	 * 
-	 * @return the interval data field.
-	 */
-	public IntervalADT<T> getInterval() {
-		return interval;
-	}
+    }
 
-	/**
-	 * Setter for the interval.
-	 * 
-	 * @param interval
-	 *            the interval to be set at this node.
-	 */
-	public void setInterval(IntervalADT<T> interval) {
-		this.interval = interval;
-	}
 
-	/**
-	 * Setter for the maxEnd. This represents the maximum end point associated
-	 * in any interval stored at the subtree rooted at this node (inclusive of
-	 * this node).
-	 * 
-	 * @param maxEnd
-	 *            the maxEnd associated with this node.
-	 *
-	 */
-	public void setMaxEnd(T maxEnd) {
-		this.maxEnd = maxEnd;
-	}
+    /**
+     * Returns the next in-order successor of the BST. Hint: Return left-most
+     * node in the right subtree. Return null if there is no rightNode.
+     *
+     * @return in-order successor node
+     */
+    public IntervalNode<T> getSuccessor() {
+        if (rightNode == null)
+            return null;
+        IntervalNode<T> curr = this;
+        while (curr.leftNode != null) {
+            curr = curr.getLeftNode;
+        }
+        return curr;
+    }
 
-	/**
-	 * Getter for the maxEnd member variable.
-	 * 
-	 * @return the maxEnd.
-	 */
-	public T getMaxEnd() {
-		return maxEnd;
-	}
+    /**
+     * Returns the interval associated with the node.
+     * 
+     * @return the interval data field.
+     */
+    public IntervalADT<T> getInterval() {
+        return interval;
+    }
 
-	/**
-	 * Getter for the leftNode reference.
-	 *
-	 * @return the reference of leftNode.
-	 */
-	public IntervalNode<T> getLeftNode() {
-		return leftNode;
-	}
+    /**
+     * Setter for the interval.
+     * 
+     * @param interval
+     *            the interval to be set at this node.
+     */
+    public void setInterval(IntervalADT<T> interval) {
+        this.interval = interval;
+    }
 
-	/**
-	 * Setter for the leftNode of this node.
-	 * 
-	 * @param leftNode
-	 *            the left node.
-	 */
-	public void setLeftNode(IntervalNode<T> leftNode) {
-		this.leftNode = leftNode;
-	}
+    /**
+     * Setter for the maxEnd. This represents the maximum end point associated
+     * in any interval stored at the subtree rooted at this node (inclusive of
+     * this node).
+     * 
+     * @param maxEnd
+     *            the maxEnd associated with this node.
+     *
+     */
+    public void setMaxEnd(T maxEnd) {
+        this.maxEnd = maxEnd;
+    }
 
-	/**
-	 * Getter for the rightNode of this node.
-	 * 
-	 * @return the rightNode.
-	 */
-	public IntervalNode<T> getRightNode() {
-		return rightNode;
-	}
+    /**
+     * Getter for the maxEnd member variable.
+     * 
+     * @return the maxEnd.
+     */
+    public T getMaxEnd() {
+        return maxEnd;
+    }
 
-	/**
-	 * Setter for the rightNode of this node.
-	 * 
-	 * @param rightNode
-	 *            the rightNode of this node.
-	 */
-	public void setRightNode(IntervalNode<T> rightNode) {
-		this.rightNode = rightNode;
-	}
+    /**
+     * Getter for the leftNode reference.
+     *
+     * @return the reference of leftNode.
+     */
+    public IntervalNode<T> getLeftNode() {
+        return leftNode;
+    }
+
+    /**
+     * Setter for the leftNode of this node.
+     * 
+     * @param leftNode
+     *            the left node.
+     */
+    public void setLeftNode(IntervalNode<T> leftNode) {
+        this.leftNode = leftNode;
+    }
+
+    /**
+     * Getter for the rightNode of this node.
+     * 
+     * @return the rightNode.
+     */
+    public IntervalNode<T> getRightNode() {
+        return rightNode;
+    }
+
+    /**
+     * Setter for the rightNode of this node.
+     * 
+     * @param rightNode
+     *            the rightNode of this node.
+     */
+    public void setRightNode(IntervalNode<T> rightNode) {
+        this.rightNode = rightNode;
+    }
 }
