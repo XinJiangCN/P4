@@ -50,21 +50,34 @@ public class IntervalTree<T extends Comparable<T>> implements IntervalTreeADT<T>
             if (node.getRightNode() != null) {
                 node.setInterval(node.getSuccessor().getInterval);
                 deleteHelper(node.getSuccessor(), interval);
-                // TODO Update new maxEnd
+                //Update the maxEnd
+                node.setMaxEnd(node.getSuccessor().getMaxEnd());
+
+
+               //TODO Problem here. Maybe update all left subtree
+               
                 // return the node
+                return node;    
             }
-            //TODO if rightchild doesn't exist return left chile
+            if (node.getRightNode() == null)
+                return node.getLeftNode;
         }
         //TODO If interval is in the right subtree,
-        //Set right child to result of calling deleteHelper on right child.
-        //Update the maxEnd if necessary.
-        //Return the node.
-        //If interval is in the left subtree.
-        //Set left child to result of calling deleteHelper on left child.
-        //Update the maxEnd if necessary.
-        //Return the node.
-    }
+        if (node.getInterval().compareTo(interval) < 0) {
+            node.setRightNode(deleteHelper(node.getRightNode));
 
+            //TODO  Update the MaxEnd if necessary
+
+            return node;
+        }
+        if (node.getInterval().compareTo(interval) > 0) {
+            node.setLeftNode(deleteHelper(node.getLeftNode));
+
+            //TODO Update the MaxEnd if necessary
+
+        }
+       return node; 
+    } 
     @Override
     public List<IntervalADT<T>> findOverlapping(
             IntervalADT<T> interval) {
