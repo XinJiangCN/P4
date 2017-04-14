@@ -59,7 +59,23 @@ public interface IntervalADT<T extends Comparable<T>> extends Comparable<Interva
 	 */
 	public boolean contains(T point);
 
-
+	/**
+	 * Compares this interval with the other. Examples: [0,1] comparedTo [2,3]:
+	 * return -1 [2,3] comparedTo [0,1]: return 1
+	 * 
+	 * [0,4] comparedTo [2,3]: return -1 [2,3] comparedTo [0,4]: return 1
+	 * 
+	 * [0,3] comparedTo [2,4]: return -1 [2,4] comparedTo [0,3]: return 1
+	 *
+	 * [0,3] comparedTo [0,4]: return -1 [0,4] comparedTo [0,3]: return 1
+	 *
+	 * [0,4] comparedTo [0,4]: return 0
+	 *
+	 * @param other
+	 *            the interval to which compare it with
+	 * @return comparison value as shown above
+	 */
+	
 	/**
 	 * Compares this interval with the other and return a negative value 
 	 * if this interval comes before the "other" interval.  Intervals 

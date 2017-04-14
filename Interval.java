@@ -1,66 +1,72 @@
 
 public class Interval<T extends Comparable<T>> implements IntervalADT<T> {
-    private T start;
-    private T end;  
-    private String label;
+	
+	// TODO declare any needed data members
+	private T start;
+	private T end;
+	private String label;
 
-    public Interval(T start, T end, String label) {
-        this.start = start;
-        this.end = end;
-        this.label = label;
-    }
+	public Interval(T i, T j, String string) {
+		// TODO Auto-generated constructor stub
+		this.start = i;
+		this.end = j;
+		this.label = string;
+	}
 
-    @Override
-    public T getStart() {
-        return start;
-    }
+	@Override
+	public T getStart() {
+		// TODO Auto-generated method stub
+		return start;
+	}
 
-    @Override
-    public T getEnd() {
-        return end;
-    }
+	@Override
+	public T getEnd() {
+		// TODO Auto-generated method stub
+		return end;
+	}
 
-    @Override
-    public String getLabel() {
-        return label;
-    }
+	@Override
+	public String getLabel() {
+		// TODO Auto-generated method stub
+		return label;
+	}
 
-    @Override
-    public boolean overlaps(IntervalADT<T> other) {
-        if (this.getEnd < other.getStart() || other.getEnd < this.getStart()) 
-            return false; //TODO Change the > < to CompareTo
-        return true; 
-    }
+	@Override
+	public boolean overlaps(IntervalADT<T> other) {
+		// TODO Auto-generated method stub
+		if(end.compareTo(other.getStart()) < 0) {
+			return false;
+		} else if (other.getEnd().compareTo(start) < 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
-    @Override
-    public boolean contains(T point) {
-        if (point >= this.getStart() && point <= this.getEnd()) //TODO change the< > to commpare to
-            return true;
-        return false;
-    }
+	@Override
+	public boolean contains(T point) {
+		// TODO Auto-generated method stub
+		if(start.compareTo(point) < 0 && end.compareTo(point) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    @Override
-    public int compareTo(IntervalADT<T> other) {
-        if (this.getStart().compareTo(other.getStart.()) == 0) {
-            if (this.getEnd().compareTo(other.getEnd.()) == 0) {
-                return 0; 
-            } else {
-                if(this.getEnd().compareTo(other.getEnd()) < 0) 
-                    return  -1;
-                else 
-                    return 1;
-            }       
-        } else {
-            if (this.getStart().compareTo(other.getStart()) < 0)
-                return  -1;
-            else
-                return 1;
-        }
+	@Override
+	public int compareTo(IntervalADT<T> other) {
+		// TODO Auto-generated method stub
+		if(start.compareTo(other.getStart()) == 0) {
+			return start.compareTo(other.getStart());
+		} else {
+			return end.compareTo(other.getEnd());
+		}
+	}
 
-    }
+	@Override
+	public String toString() {
+		String printFormat = label;
+		printFormat += " [" + start + ", " + end +"]";
+		return printFormat;
+	}
 }
-
-
-
-
-

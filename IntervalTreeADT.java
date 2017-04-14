@@ -31,7 +31,7 @@ public interface IntervalTreeADT<T extends Comparable<T>> {
 	/**
 	 * Inserts an <code>Interval</code> in the tree.
 	 * 
-	 * <p>Each <code>Interval</code> is stored as the data item of an
+	 * <p>Each <code>Inteval</code> is stored as the data item of an
 	 * <code>IntervalNode</code>.  The position of the new IntervalNode 
 	 * will be the position found using the binary search algorithm.
 	 * This is the same algorithm presented in BST readings and lecture
@@ -39,7 +39,7 @@ public interface IntervalTreeADT<T extends Comparable<T>> {
 	 * 
 	 * <p>Tip: Call a recursive helper function with root node.
 	 * In that call, traverse the tree using the binary search algorithm.
-	 * Use the comparator defined in <code>Interval</code> and create a new
+	 * Use the comparator defined in <code>IntervalNode</code> and create a new
 	 * IntervalNode to store the new <i>interval</i> item when you reach 
 	 * the end of the tree.</p>
 	 * 
@@ -47,9 +47,8 @@ public interface IntervalTreeADT<T extends Comparable<T>> {
 	 * in the IntervalNode. Recall, that <b>maxEnd</b> of a node represents 
 	 * the maximum end of current node and all descendant nodes.</p>
 	 * 
-	 * <p>Note: the key for comparison here will be the compareTo method defined
-	 *  in interval class. You will use this for the interval stored in the node to
-	 *  compare it with the input interval.</p>
+	 * <p>Note: the key for comparison here is the start of the interval stored 
+	 * at each IntervalNode.</p>
 	 * 
 	 * <p>If the start and end of the given interval match an existing 
 	 * interval, throw an IllegalArgumentException.</p>
@@ -149,8 +148,8 @@ public interface IntervalTreeADT<T extends Comparable<T>> {
 	 * <ol>
 	 * <li>if node is null, return</li>
 	 * <li>if node interval overlaps with the given input interval, add it to the result.</li>
-	 * <li>if left subtree's max is greater than or equal to the interval's start, call findOverlappingHelper in the left subtree.</li>
-	 * <li>if right subtree's max is greater than or equal to the interval's start, call call findOverlappingHelper in the rightSubtree.</li>
+	 * <li>if left subtree's max is greater than the interval's start, call findOverlappingHelper in the left subtree.</li>
+	 * <li>if right subtree's max is greater than the interval's start, call call findOverlappingHelper in the rightSubtree.</li>
 	 * </ol>
 	 *  
 	 * @param interval the interval to search for overlapping
@@ -183,6 +182,24 @@ public interface IntervalTreeADT<T extends Comparable<T>> {
 	public List<IntervalADT<T>> searchPoint(T point);
 
 	/**
+	 * Returns true if the tree contains an exact match for the start and end of the given interval.
+	 * The label is not considered for this operation.
+	 *  
+	 * <p>Tip: Define and call a recursive helper function to call with root node 
+	 * and the target interval.</p>
+	 * 
+	 * @param interval
+	 * 				target interval for which to search the tree for. 
+	 * @return boolean 
+	 * 			   	representing if the tree contains the interval.
+	 *
+	 * @throws IllegalArgumentException
+	 *             	if interval is null.
+	 * 
+	 */
+	public boolean contains(IntervalADT<T> interval);
+
+	/**
 	 * Get the size of the interval tree. The size is the total number of
 	 * nodes present in the tree. 
 	 * 
@@ -201,24 +218,6 @@ public interface IntervalTreeADT<T extends Comparable<T>> {
 	 */
 	public int getHeight();
 
-	/**
-	 * Returns true if the tree contains an exact match for the start and end of the given interval.
-	 * The label is not considered for this operation.
-	 *  
-	 * <p>Tip: Define and call a recursive helper function to call with root node 
-	 * and the target interval.</p>
-	 * 
-	 * @param interval
-	 * 				target interval for which to search the tree for. 
-	 * @return boolean 
-	 * 			   	representing if the tree contains the interval.
-	 *
-	 * @throws IllegalArgumentException
-	 *             	if interval is null.
-	 * 
-	 */
-	public boolean contains(IntervalADT<T> interval);
-	
 	/**
 	 * Print the statistics of the tree in the below format
 	 * <pre>
